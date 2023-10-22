@@ -1,5 +1,5 @@
-var NUCoin = artifacts.require("NUCoin");
+var MUCoin = artifacts.require("MUCoin");
 
 module.exports = function(deployer) {
-  deployer.deploy(NUCoin);
+  deployer.deploy(MUCoin);
 };

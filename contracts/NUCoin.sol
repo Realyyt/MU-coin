@@ -12,13 +12,13 @@ import "./SafeMath.sol";
     Another way to do this to make it easier on the students is to add each charging address as an authority and then call transferFrom.
     This would remove the need for students paying for gas fees.
 */
-contract NUCoin {
+contract MUCoin {
 
     using SafeMath for uint256;
 
-    string public constant name = "NUCoin";
-    string public constant symbol = "NU";
-    string public constant standard = "NUCoin";
+    string public constant name = "MUCoin";
+    string public constant symbol = "MU";
+    string public constant standard = "MUCoin";
     uint8 public constant decimals = 2;
     address private initial_authority;
     //address[] public authorities;
@@ -43,7 +43,7 @@ contract NUCoin {
 
     // Transfers a given amount of coins to the given address from the senders address.
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(_balances[msg.sender] >= _value, "NUCoin/Economy/Insufficient funds to send.");
+        require(_balances[msg.sender] >= _value, "MUCoin/Economy/Insufficient funds to send.");
 
         _balances[msg.sender] -= _value;
         _balances[_to] += _value;
@@ -69,22 +69,22 @@ contract NUCoin {
 
     // Deposit funds into a given account. Must be an authoritative address.
     function addFunds(uint256 _amt, address _addr) external returns (bool success) {
-        require(isAuthority(msg.sender), "NUCoin/Security/Cannot add funds from a non-authoritative address.");
+        require(isAuthority(msg.sender), "MUCoin/Security/Cannot add funds from a non-authoritative address.");
         _balances[_addr].add(_amt);
         return true;
     }
 
     // Delete funds from an account. Must be an authoritative address.
     function removeFunds(uint256 _amt, address _addr) external returns (bool success) {
-        require(isAuthority(msg.sender), "NUCoin/Security/A non-authoritative address cannot remove funds from another account.");
-        _balances[_addr].sub(_amt, "NUCoin/Economy/Transfer amount exceeds balance");
+        require(isAuthority(msg.sender), "MUCoin/Security/A non-authoritative address cannot remove funds from another account.");
+        _balances[_addr].sub(_amt, "MUCoin/Economy/Transfer amount exceeds balance");
         return true;
     }
 
     // Transfers a given amount of coins from `sender` to `recipient`.
     function transferFrom(address sender, address recipient, uint256 amount) public virtual returns (bool success) {
-        require(isAuthority(msg.sender), "NUCoin/Security/Cannot transferFrom non-authorative address.");
-        _balances[sender] = _balances[sender].sub(amount, "NUCoin/Economy/Transfer amount exceeds balance");
+        require(isAuthority(msg.sender), "MUCoin/Security/Cannot transferFrom non-authorative address.");
+        _balances[sender] = _balances[sender].sub(amount, "MUCoin/Economy/Transfer amount exceeds balance");
         _balances[recipient] = _balances[recipient].add(amount);
         emit Transfer(sender, recipient, amount);
         return true;
@@ -92,14 +92,14 @@ contract NUCoin {
 
     // Adds an address to the list of authoritative accounts. Must be an authoritative address.
     function addAuthority(address _toAdd) public returns (bool success) {
-        require(isAuthority(msg.sender), "NUCoin/Security/Cannot add authority from a non-authoritative address.");
+        require(isAuthority(msg.sender), "MUCoin/Security/Cannot add authority from a non-authoritative address.");
         authorities[_toAdd] = true;
         return true;
     }
 
     // Removes an accounts authoritative access. Must be an authoritative address.
     function renounceAuthority(address _toRm) public returns (bool success) {
-        require(isAuthority(msg.sender), "NUCoin/Security/Cannot remove authority from a non-authoritative address.");
+        require(isAuthority(msg.sender), "MUCoin/Security/Cannot remove authority from a non-authoritative address.");
         authorities[_toRm] = false;
         return true;
     }
