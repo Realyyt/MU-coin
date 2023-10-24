@@ -1,6 +1,7 @@
 pragma solidity >=0.6.0;
 
 import "./SafeMath.sol";
+
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
@@ -62,3 +63,4 @@ contract MUCoin is AccessControl, Pausable {
 
     // Event to log minting activity
     event Minted(address minter, address to, uint256
+    );}
