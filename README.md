@@ -1,4 +1,4 @@
-##Abstract:
+###Abstract:
 
 Objective
 This paper aims to investigate the potential benefits and feasibility of implementing a decentralized financial transaction system on the Ethereum blockchain for educational institutions. The primary motivation behind this research is to explore the cost-effectiveness and advantages of transitioning from traditional server-based systems to blockchain technology. Additionally, the study evaluates the advantages of introducing a digital currency (MUCoins) for students, enhancing the control and flexibility over financial transactions on campus.
